@@ -9,29 +9,18 @@ using namespace std;
 
 int main()
 {
+    // declare variables
+    
+    string myName = "Gilberto";
     string chocolateBrowniePhrase = "Ghirardelli Dark Chocolate Brownie";
     
     int caloriesPerBrownie = 140;
     float gramsOfFatPerBrownie = 3.5;
     float gramsOfCarbsPerBrownie = 25;
-
-    // prompt user for name
-
-    string myName;
-    cout << "What is your name?" << endl;
-    cin >> myName;
-    cout << "\n";
-
-    // prompt user for number of brownies
-
-    int numberOfBrownies;
-    cout << "How many brownies do you want?" << endl;
-    cin >> numberOfBrownies;
-    cout << "\n";
+    int numberOfBrownies = 3;
 
     // perform calculations on number of brownies
-    // Note: not all variables are used due to assignment requirements
- 
+     
     int caloriesInThreeBrownies = numberOfBrownies * caloriesPerBrownie; 
     float gramsOfFatInThreeBrownies = numberOfBrownies * gramsOfFatPerBrownie;
     float gramsOfCarbsInThreeBrownies = numberOfBrownies * gramsOfCarbsPerBrownie;
@@ -44,7 +33,9 @@ int main()
     cout << gramsOfFatPerBrownie << " grams of Fat" << endl;
     cout << gramsOfCarbsPerBrownie << " grams of Carbs" << endl;
     cout << "\n";
-    cout << "There is also " << gramsOfCarbsInThreeBrownies << " grams of Carbs in " << numberOfBrownies << " brownies!";
+    cout << "There is also " << gramsOfCarbsInThreeBrownies << " grams of Carbs" << endl;
+    cout << gramsOfFatInThreeBrownies << " grams of Fat " << endl;
+    cout << "For a total of " << caloriesInThreeBrownies << " calories in " << numberOfBrownies << " brownies!";
 
     return 0;
 }
