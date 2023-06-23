@@ -18,12 +18,14 @@ int main()
   string hourlyPayRatePhrase = "Hourly pay rate for Employee #";
   string hourlyPayRateDisclaimer = " [Not necessarily whole dollars]: ";
   
+  int numberOfEmployees = 5;
   int hoursWorked1, hoursWorked2, hoursWorked3, hoursWorked4, hoursWorked5;
   int totalHours;
   
   double hourlyPayRate1, hourlyPayRate2, hourlyPayRate3, hourlyPayRate4, hourlyPayRate5;
   double salary1, salary2, salary3, salary4, salary5;
   double totalPay;
+  double averagePay;
 
   // Output application header information
   cout << setw(60) << ProgramHeader << endl;
@@ -34,38 +36,48 @@ int main()
   // Output phrases and get employees pay rate and hours worked 
   cout << hoursWorkedPhrase << "1" << hoursWorkedDisclaimer;
   cin >> hoursWorked1;
+  cin.ignore(100, '\n');
 
   cout << hourlyPayRatePhrase << "1" << hourlyPayRateDisclaimer;
   cin >> hourlyPayRate1;
+  cin.ignore(100, '\n');
   cout << endl;
 
   cout << hoursWorkedPhrase << "2" << hoursWorkedDisclaimer;
   cin >> hoursWorked2;
+  cin.ignore(100, '\n');
+
 
   cout << hourlyPayRatePhrase << "2" << hourlyPayRateDisclaimer;
   cin >> hourlyPayRate2;
+  cin.ignore(100, '\n');
   cout << endl;
 
   cout << hoursWorkedPhrase << "3" << hoursWorkedDisclaimer;
   cin >> hoursWorked3;
+  cin.ignore(100, '\n');
 
   cout << hourlyPayRatePhrase << "3" << hourlyPayRateDisclaimer;
   cin >> hourlyPayRate3;
+  cin.ignore(100, '\n');
   cout << endl;
 
   cout << hoursWorkedPhrase << "4" << hoursWorkedDisclaimer;
   cin >> hoursWorked4;
+  cin.ignore(100, '\n');
 
   cout << hourlyPayRatePhrase << "4" << hourlyPayRateDisclaimer;
   cin >> hourlyPayRate4;
+  cin.ignore(100, '\n');
   cout << endl;
 
   cout << hoursWorkedPhrase << "5" << hoursWorkedDisclaimer;
   cin >> hoursWorked5;
+  cin.ignore(100, '\n');
 
   cout << hourlyPayRatePhrase << "5" << hourlyPayRateDisclaimer;
   cin >> hourlyPayRate5;
-  cin.ignore();
+  cin.ignore(100, '\n');
   cout << endl;
   cout << endl;
 
@@ -79,6 +91,7 @@ int main()
   // Calculate totals
   totalHours = hoursWorked1 + hoursWorked2 + hoursWorked3 + hoursWorked4 + hoursWorked5; 
   totalPay = salary1 + salary2 + salary3 + salary4 + salary5;
+  averagePay = totalPay / numberOfEmployees;
 
   // Output formatted table with employees salary information
   cout << fixed << showpoint << setprecision(2);
@@ -90,7 +103,7 @@ int main()
   cout << setw(3) << "4" << setw(14) << static_cast<double>(hoursWorked4) << setw(10) << hourlyPayRate4 << setw(18) << salary4 << endl;
   cout << setw(3) << "5" << setw(14) << static_cast<double>(hoursWorked5) << setw(10) << hourlyPayRate5 << setw(18) << salary5 << endl;
   cout << "==============================================" << endl;
-  cout << "Total" << setw(12) << static_cast<double>(totalHours) << setw(28) << totalPay << endl;
+  cout << "Total" << setw(12) << static_cast<double>(totalHours)  << setw(10) << averagePay << setw(18) << totalPay << endl;
   cout << "==============================================" << endl;
   cout << endl;
 
