@@ -10,17 +10,17 @@ For example,
 
 Note: 0! = 1.
 
-[] - Write a program that asks the user for a positive integer number.
+[x] - Write a program that asks the user for a positive integer number.
 
-[] - Read the number.
+[x] - Read the number.
 
-[] - Check if it is a positive integer number. Keep asking the user for a positive integer number until the user gives you a positive integer number.
+[x] - Check if it is a positive integer number. Keep asking the user for a positive integer number until the user gives you a positive integer number.
 
-[] - Test for characters. Keep asking the user for valid input until the user gives you a positive integer number.
+[x] - Test for characters. Keep asking the user for valid input until the user gives you a positive integer number.
 
-[] - Calculate the FACTORIAL of the given value as shown in the definition above.
+[x] - Calculate the FACTORIAL of the given value as shown in the definition above.
 
-[] - Display the output as shown on the screen.
+[x] - Display the output as shown on the screen.
 
 NOTE: This program is on while loop. Do NOT use Do while or For loop.
 Observe the good programming practices and the structure of a program.
