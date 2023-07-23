@@ -22,7 +22,7 @@
 ### Exit
 [x] - Exit the program
 
-[] - Make sure to ask the user if they want to run the     program again with a Yes or No response.
+[x] - Make sure to ask the user if they want to run the     program again with a Yes or No response.
       A Yes repeats the program a No exits the program.
 
 Submit your CPP file and Txt file
