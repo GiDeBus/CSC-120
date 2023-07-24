@@ -14,8 +14,8 @@
 
 [x] - Observe the good programming practices and the structure of a program.
 
-[] - Tell the User to hit Enter to run the program again.
+[x] - Tell the User to hit Enter to run the program again.
 
-[] - Do not forget the comments, halt the screen, spacing of code and output, make it release etc.
+[x] - Do not forget the comments, halt the screen, spacing of code and output, make it release etc.
 
 Prime number: "A prime number is a positive integer `p > 1` that has no positive integer divisors other than 1 and p itself. More concisely, a prime number p is a positive integer having exactly one positive divisor other than 1, meaning it is a number that cannot be factored".  [1]

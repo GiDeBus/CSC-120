@@ -1,6 +1,6 @@
 /*
   Project Name: Factorial
-  Programmer(s): Gil Del Busto
+  Programmer(s): Gil Del Busto, Nam Nguyen, Prajwool Rana, Autino Vicente
   Description: This program prompts the user for a whole positive number
   and returns the factorial of such number.
 */
@@ -46,6 +46,9 @@ int main() {
     result *= counter;
     counter++;
   }
+
+  // reduce counter for screen output
+  counter--;
 
   // Outputs the beginning of the formatted result
   cout << endl;
