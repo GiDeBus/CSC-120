@@ -1,5 +1,5 @@
 /* 
-  Programmer: Gil Del Busto
+  Programmer: Gil, Nam, Prajwool
   Program: Student Organizer Group Project
   Description: This program prompts the user for a number of students. 
   It writes a file and outputs the first and last students. 

@@ -130,7 +130,7 @@ int main() {
 
         // Output content from file until empty
         while (getline(infile, line)) {
-            cout << line << endl;
+          cout << line << endl;
         }
 
         // Close file
