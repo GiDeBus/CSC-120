@@ -1,0 +1,19 @@
+*******************************************
+This is Math Tutor 2
+Written by [Gil, Prajwol, Nam]  
+*******************************************
+
+Question 1 of 1
+
+            37
+
+      +     32
+        ______
+Your first try: Invalid input. Please enter a number.
+
+*******************************************
+	You got 0 correct answers
+	and 1 partially correct answers
+	out of 1 questions asked.
+	You scored: 50.00%
+*******************************************

@@ -5,16 +5,14 @@ This project is on random numbers, switch statements, loops, functions, and file
 
  ***************READ CAREFULLY ******************
 
-[] - Have a function for your project title (banner) with 
+[x] - Have a function for your project title (banner) with 
   the appropriate information nicely centered on top.
 
-[] - Nice well-formatted source code.
+[x] - Nice well-formatted source code.
 
-[] - Nice well-formatted output screen.
+[x] - Nice well-formatted output screen.
 
-[] - Ensure your code doesn't crash when characters are inputted after a double is given for an action to be performed, and the prompts appear when they are supposed to.
-
-[] - Display this menu
+[x] - Display this menu
          1]  Addition only
          2]  Subtraction only
          3]  Multiplication only
@@ -26,11 +24,15 @@ This project is on random numbers, switch statements, loops, functions, and file
          9]  Addition, subtraction, multiplication, and int division
          10] All operators
          11] End program
-[] - Prompt the user to enter a choice. Validate input.
+[x] - Prompt the user to enter a choice. Validate input.
 
-[] - Prompt the user on the number of questions they want to have in the quiz. Validate input.
+[-] - Ensure your code doesn't crash when characters are inputted after a double is given 
+      for an action to be performed, and the prompts appear when they are supposed to.
 
-[] - The program will create the appropriate number of questions to check the user's knowledge in addition/subtraction/multiplication/division/modulo.
+[x] - Prompt the user on the number of questions they want to have in the quiz. Validate input.
+
+[] - The program will create the appropriate number of questions to check the user's 
+      knowledge in addition/subtraction/multiplication/division/modulo.
 
 [] - The kind of question to be asked is random.
 
@@ -61,7 +63,9 @@ The user needs to type the answer. Validate all  input
 
 [] - If you select quit from the menu, Exit the program with an appropriate message.
 
-[] - At the end of the quiz (s), provide a report about the user's performance (number of correct answers, number of partially correct answers - i.e., second attempt, the total number of questions asked, and the score as a percentage. 
+[] - At the end of the quiz (s), provide a report about the user's performance 
+    (number of correct answers, number of partially correct
+     answers - i.e., second attempt, the total number of questions asked, and the score as a percentage. 
 
 [] - Make sure to store the report on a txt file called Report.txt.
 [] - Do not forget to make sure you use correct grammar in your output.
