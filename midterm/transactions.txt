@@ -1,0 +1,10 @@
+Month 1: Deposits: 10, Withdrawals: 5, Monthly Interest Earned: 3.15
+Running Balance: 108.15
+Month 2: Deposits: 12, Withdrawals: 43, Monthly Interest Earned: 2.3145
+Running Balance: 79.4645
+Month 3: Deposits: 10, Withdrawals: 2, Monthly Interest Earned: 2.62393
+Running Balance: 90.0884
+Total Deposits: 32
+Total Withdrawals: 50
+Total Interest Earned: 8.08843
+Ending Balance: 90.0884
