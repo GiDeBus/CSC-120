@@ -149,11 +149,15 @@ void viewSingleStudent(int studentId, int studentData[][5], string headers[], in
   cout << endl;
 }
 
+// Function to return the highest and lowest scores.
 void viewHighAndLowScores(int studentData[][5], string headers[], int rows, int columns) {
-  int lowestScore = studentData[0][4];
+  // Set each value to the first element of the final scores array.
+  int lowestScore = studentData[0][4]; 
   int highestScore = studentData[0][4];
   
   cout << endl;
+
+  // If value is higher/lower than saved value then replace.
   for(int i = 1; i < rows; i++) {
     if(studentData[i][rows] < lowestScore) {
       lowestScore = studentData[i][rows];
@@ -163,6 +167,8 @@ void viewHighAndLowScores(int studentData[][5], string headers[], int rows, int 
       highestScore = studentData[i][rows];
     }
   }
+
+  // Print out scores.
   cout << "The lowest score was: " << lowestScore << endl;
   cout << "The highest score was: " << highestScore << endl;
 }
