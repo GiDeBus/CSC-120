@@ -19,9 +19,9 @@ Program should include but not limited to:
 
 [x] - Add array should result to : 20 16 12 8 4 7 10
 
-[] - Nice well formatted source code.
+[x] - Nice well formatted source code.
 
-[] - Code has comments
+[x] - Code has comments
 
 [x] - Nice well formatted output screen.
 

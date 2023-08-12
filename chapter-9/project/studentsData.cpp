@@ -41,27 +41,8 @@ void getUserInput(char& selection) {
   }
 }
 
-// Function to save headers into a string array from file.
-void readHeadersFromFile(string array[], int size) {
-  // Define file.
-  ifstream inputFile("studentgrade.txt");
-  
-  // Validate file exists.
-  if (!inputFile) {
-    cout << endl;
-    cout << "Error opening file." << endl;
-    cout << endl;
-  }
-
- // Save values into string array.
-  for( int i = 0; i < size; i++) {
-    inputFile >> array[i];
-  }
-
-}
-
 // Function that reads txt file and saves info to a two dimensional array.
-void readStudentInfoFromFile(int studentData[][5], int NUMBER_OF_STUDENTS, int NUMBER_OF_HEADERS) {
+void readStudentInfoFromFile(int studentData[][5], string headers[], int NUMBER_OF_STUDENTS, int NUMBER_OF_HEADERS) {
   // Define file.
   ifstream inputFile("studentgrade.txt");
   
@@ -70,6 +51,11 @@ void readStudentInfoFromFile(int studentData[][5], int NUMBER_OF_STUDENTS, int N
     cout << endl;  
     cout << "Error opening file." << endl;
     cout << endl;
+  }
+
+  // Save header values into string array.
+  for( int i = 0; i < NUMBER_OF_HEADERS; i++) {
+    inputFile >> headers[i];
   }
 
  // Skip the header row
@@ -88,15 +74,18 @@ void readStudentInfoFromFile(int studentData[][5], int NUMBER_OF_STUDENTS, int N
 
 }
 
-// Function that display all students.
-void viewAllStudents(int data[][5], string headers[], int rows, int columns) {
+// Function to print headers to screen.
+void printHeaders(string headers[], int size) {
   // Print all headers
   cout << endl;
-  for(int i = 0; i < columns; i++) {
+  for(int i = 0; i < size; i++) {
     cout << setw(9) << headers[i] << " ";
   }
   cout << endl;
+}
 
+// Function that display all students.
+void viewAllStudents(int data[][5], string headers[], int rows, int columns) {
   // Print student data
   for(int i = 0; i < rows; i++) {
     for(int j = 0; j < columns; j++) {
@@ -135,11 +124,6 @@ void viewSingleStudent(int studentId, int studentData[][5], string headers[], in
       index = i;
       break;
     }
-  }
-  // print headers
-  cout << endl;
-  for(int j = 0; j < columns; j++) {
-    cout << setw(9) << headers[j] << " ";
   }
   cout << endl;
   // loop through array to get student info
@@ -182,17 +166,18 @@ int main() {
   string headers[NUMBER_OF_HEADERS] = {};
 
   displayMenu();
-  readHeadersFromFile(headers, NUMBER_OF_HEADERS);
-  readStudentInfoFromFile(studentData, NUMBER_OF_STUDENTS, NUMBER_OF_HEADERS);
+  readStudentInfoFromFile(studentData, headers, NUMBER_OF_STUDENTS, NUMBER_OF_HEADERS);
 
   while(true) {
     getUserInput(selection);
     if(selection == 'a') {
+      printHeaders(headers, NUMBER_OF_HEADERS);
       viewAllStudents(studentData, headers, NUMBER_OF_STUDENTS, NUMBER_OF_HEADERS);
     }
 
     if(selection == 'b') {
       studentId = getStudentId();
+      printHeaders(headers, NUMBER_OF_HEADERS);
       viewSingleStudent(studentId, studentData, headers, NUMBER_OF_STUDENTS, NUMBER_OF_HEADERS);
     }
 
