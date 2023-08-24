@@ -27,11 +27,12 @@ Create your project on the desktop. Open the input and output files through IDE 
 [x] - If it does, read the data from that file and Close that file.
 
 ### Read Student Information
-[] - Ask the user how many students are in that course. Validate your input. Keep on asking for valid input till it is provided. Make sure the Number of student files doesn't exceed 3.
-[] - Attempt to open a file named Student #i.txt (your code automatically generates the file names, you do not have to ask the user for that filename), where i is an iterator (goes from 1 to the total number of students in the class. BIG HINT: You will need to use the to_string function, defined in the string library. That function takes an integer as an argument and returns it as a string. For example, to_string(15) returns “15”.
-[] - Makes sure it exists.
-[] - If it doesn’t, output an error message and goes to the next student (a student may not have taken the exam)
-[] - If it does, read the data from that file into the answer key array and
+[x] - Ask the user how many students are in that course. Validate your input. Keep on asking for valid input till it is provided. Make sure the Number of student files doesn't exceed 3.
+[x] - (your code automatically generates the file names, you do not have to ask the user for that filename), where i is an iterator (goes from 1 to the total number of students in the class. BIG HINT: You will need to use the to_string function, defined in the string library. That function takes an integer as an argument and returns it as a string. For example, to_string(15) returns “15”.
+[x] - Attempt to open a file named Student #i.txt 
+[x] - Makes sure it exists.
+[x] - If it doesn’t, output an error message and goes to the next student (a student may not have taken the exam)
+[x] - If it does, read the data from that file into the answer key array and
 
 ### Write Student File
 [] - Finally, your program will use each of the student's full name to create a corresponding file (make sure you append “.txt” after the name of the student before you create the output file)
