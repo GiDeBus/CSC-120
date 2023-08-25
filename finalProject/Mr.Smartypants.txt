@@ -1,0 +1,14 @@
+Student: Mr.Smartypants
+---------------------------------------------------------------
+Assignment          Weight         Grade     Points         
+---------------------------------------------------------------
+Project#1           5              100          5         
+Quiz#1              10             100          10        
+Project#2           7              100          7         
+Project#3           8              100          8         
+Midterm             25             100          25        
+Final               35             100          35        
+Participation       10             100          10        
+---------------------------------------------------------------
+Course Grade: 100%
+Final Exam Passed?: true
