@@ -3,7 +3,7 @@
 ## Directions
 Write a complete program to help your professor(s) calculate the course grade of their students. In your program: 
 
-[] - You MUST have arrays that store the data read from the file and close the file as soon as possible (you may use strings for the student name and file names). 
+[x] - You MUST have arrays that store the data read from the file and close the file as soon as possible (you may use strings for the student name and file names). 
 
 Create your project on the desktop. Open the input and output files through IDE ONLY. Meet with a team member with a windows system to view the executable file if you need to view my sample file. Please start early and adhere to all requirements on this exam and NOT the SAMPLE executable file.
 
@@ -35,16 +35,16 @@ Create your project on the desktop. Open the input and output files through IDE 
 [x] - If it does, read the data from that file into the answer key array and
 
 ### Write Student File
-[] - Finally, your program will use each of the student's full name to create a corresponding file (make sure you append “.txt” after the name of the student before you create the output file)
-[] - And output in that file the information in a similar way as my sample program does (nice table)
-  [] - The name of the student
-  [] - The list of items in the course, the item's weight, the grade the student got for that item, and the points the student earned as a result.
-  [] - The course grade for that student
-  [] - And whether or not the student has passed or not the exam (the passing grade is 70%)
+[x] - Finally, your program will use each of the student's full name to create a corresponding file (make sure you append “.txt” after the name of the student before you create the output file)
+[x] - And output in that file the information in a similar way as my sample program does (nice table)
+  [x] - The name of the student
+  [x] - The list of items in the course, the item's weight, the grade the student got for that item, and the points the student earned as a result.
+  [x] - The course grade for that student
+  [x] - And whether or not the student has passed or not the exam (the passing grade is 70%)
 
 ### Structure
 [] - A function that loads the answer key – this function should take the file name that contains the point allocation as an argument as well as any other arguments you find necessary.
-[] - You can use any function or member function with the condition that you explain how it works and why you used it.
-[] - A function that “grades” the student – that function will also output the information described above to the file with the student’s name as filename (can do the open as well)
-[] - Any other function(s) that you find useful
-[] - Your program should compile with NO errors and NO warnings.
+[] - A function that “grades” the student – that function will also output the information described above to the file with the student’s name as filename (can do the open as well).
+[x] - You can use any function or member function with the condition that you explain how it works and why you used it.
+[x] - Any other function(s) that you find useful
+[x] - Your program should compile with NO errors and NO warnings.

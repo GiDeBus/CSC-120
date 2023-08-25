@@ -1,0 +1,12 @@
+Student: JamesBrownJr.
+---------------------------------------------------------------
+Assignment          Weight         Grade     Points         
+---------------------------------------------------------------
+Group_Work          10             70           7         
+Research_paper      20             90           18        
+Midterm             25             20           5         
+Final               35             80           28        
+Service_Learning    10             78           7.8       
+---------------------------------------------------------------
+Course Grade: 65.8%
+Final Exam Pass/Fail: true

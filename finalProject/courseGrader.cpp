@@ -5,6 +5,7 @@ Program Description: A program that grades students based on a specific syllabus
   separate grading files for each student.
 */
 
+// TODO: Add comments to code. 
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -16,8 +17,13 @@ using namespace std;
 const string FIRST_SYLLABUS_FILE_NAME = "syllabus.txt";
 const string SECOND_SYLLABUS_FILE_NAME = "syllabus2.txt";
 
-// LOAD SYLLABUS DATA
-// ----------------------
+// LOAD SYLLABUS DATA ----------------------
+void displayBanner() {
+  cout << left << setw(24) << "Programmer(s):" << "Gilberto Del Busto" << endl
+    << setw(24) << "Program Name:" << "Course Grader" << endl
+    << setw(24) << "Program Description:" << "A program that grades students based on a specific syllabus and creates\n"
+    << setw(24) << "" << "separate grading files for each student." << endl;
+}
 
 void validateInputFile(ifstream& inputFile) {
   if(!inputFile) {
@@ -58,6 +64,14 @@ string getInputFile() {
   }
 }
 
+int numberOfAssignments(string selectedSyllabus) {
+    if (selectedSyllabus == FIRST_SYLLABUS_FILE_NAME) {
+    return 7;
+  } else {
+    return 5;
+  }
+}
+
 void loadSyllabus(string selectedSyllabus, string firstSyllabusAssignments[], int firstSyllabusGradings[],
   int& firstSyllabusDataSize, string secondSyllabusAssignments[], int secondSyllabusGradings[],
   int& secondSyllabusDataSize) {
@@ -68,8 +82,7 @@ void loadSyllabus(string selectedSyllabus, string firstSyllabusAssignments[], in
   }
 }
 
-// LOAD STUDENT DATA
-// ----------------------
+// LOAD STUDENT DATA ----------------------
 
 int getNumberOfStudents() {
   int input;
@@ -90,13 +103,13 @@ void generateStudentFileNames(int numberOfStudents, string arrayOfFileNames[]) {
   }
 } 
 
-void readStudentData(string fileName, string studentName, int studentGrades[], int numberOfAssignments) {
+void readStudentData(string fileName, string& studentName, int studentGrades[], int numberOfAssignments) {
   ifstream inputFile(fileName);
-  getline(inputFile >> ws, studentName);
-  cout << studentName << endl;
+  string firstName, lastName, suffix;
+  inputFile >> ws >> firstName >> lastName >> suffix;
+  studentName = firstName + "" + lastName + "" + suffix;
   for(int i = 0; i < numberOfAssignments; i++) {
     inputFile >> studentGrades[i];
-    cout << studentGrades[i] << endl;
   }
   inputFile.close();
 }
@@ -106,17 +119,62 @@ bool studentFileExists(string fileName) {
   return static_cast<bool>(inputFile);
 }
 
-void loadStudentData(string fileName, string studentName, int studentGrades[], int numberOfAssignments) {
+void loadStudentData(string fileName, string& studentName, int studentGrades[], int numberOfAssignments) {
   if(studentFileExists(fileName)) {
     readStudentData(fileName, studentName, studentGrades, numberOfAssignments);
     return;
   }
-  cout << "Error: " << fileName << " does not exist or student did not take the exam." << endl;
+  cout << "Error: student did not take the exam or file does not exist." << endl; // TODO: cout should only appear when 3 students are selected not when 1??
+}
+
+// WRITE STUDENT FILES ----------------------
+
+double gradeAssignment(int score, int AssignmentWeight) {
+  double percentage = (AssignmentWeight/ 100.00);
+  double grade = score * percentage;
+  return grade;
+}
+
+bool passingGrade(double score) {
+  return (score >= 70 ? true : false);
+}
+
+void writeStudentFile(string studentName, int syllabus[], string syllabusAssignments[], int studentGrades[], int numberOfAssignments) {
+  string fileName = studentName + ".txt";
+  ofstream outputFile(fileName);
+  double finalScore = 0;
+  bool studentPassed;
+  int index = numberOfAssignments - 2;
+  int finalExamScore = studentGrades[index];
+
+  if(!outputFile) {
+    cout << "Error: Creating file " + fileName << endl;
+    return;
+  }
+
+  outputFile << "Student: " << studentName << endl;
+  outputFile << "---------------------------------------------------------------" << endl;
+  outputFile << left << setw(20) << "Assignment" << setw(15) << "Weight" << setw(10) << "Grade" << setw(15) << "Points" << endl;
+  outputFile << "---------------------------------------------------------------" << endl;
+
+  for (int i = 0; i < numberOfAssignments; i++) {
+    outputFile << left << setw(20) << syllabusAssignments[i] << setw(15) << syllabus[i] << setw(13) << studentGrades[i] << setw(10) << gradeAssignment(syllabus[i], studentGrades[i]) <<endl;
+    finalScore += gradeAssignment(studentGrades[i], syllabus[i]);
+  }
+
+  studentPassed = passingGrade(finalExamScore);
+    
+  outputFile << "---------------------------------------------------------------" << endl;
+  outputFile << "Course Grade: " << finalScore << "%" << endl;
+  outputFile << "Final Exam Pass/Fail: " << (studentPassed ? "true" : "false") << endl;
+    
+  outputFile.close();
 }
 
 int main() {
   int numberOfStudents;
   string selectedSyllabus;
+  int numberOfSyllabusAssignments;
   string firstSyllabusAssignments[7] = {};
   string secondSyllabusAssignments[5] = {};
   int firstSyllabusGradings[7] = {};
@@ -132,6 +190,7 @@ int main() {
   int secondStudentGrades[7] = {};
   int thirdStudentGrades[7] = {};
 
+  displayBanner();
   displayMenu();
   selectedSyllabus = getInputFile();
   loadSyllabus(
@@ -145,7 +204,18 @@ int main() {
   );
   numberOfStudents = getNumberOfStudents();
   generateStudentFileNames(numberOfStudents, fileNames);
-  loadStudentData(fileNames[0], firstStudentName, firstStudentGrades, firstSyllabusDataSize);
+  numberOfSyllabusAssignments = numberOfAssignments(selectedSyllabus);
+  cout << "assignments: " << numberOfSyllabusAssignments << endl;
+  loadStudentData(fileNames[0], firstStudentName, firstStudentGrades, numberOfSyllabusAssignments);
   loadStudentData(fileNames[1], secondStudentName, secondStudentGrades, firstSyllabusDataSize);
   loadStudentData(fileNames[2], thirdStudentName, thirdStudentGrades, firstSyllabusDataSize);
+  if(numberOfSyllabusAssignments > 5) {
+      writeStudentFile(firstStudentName, firstSyllabusGradings, firstSyllabusAssignments, firstStudentGrades, numberOfSyllabusAssignments);
+      writeStudentFile(secondStudentName, firstSyllabusGradings, firstSyllabusAssignments, secondStudentGrades, numberOfSyllabusAssignments);
+      writeStudentFile(thirdStudentName, firstSyllabusGradings, firstSyllabusAssignments, thirdStudentGrades, numberOfSyllabusAssignments);
+  } else {
+    writeStudentFile(firstStudentName, secondSyllabusGradings, secondSyllabusAssignments, firstStudentGrades, numberOfSyllabusAssignments);
+    writeStudentFile(secondStudentName, secondSyllabusGradings, secondSyllabusAssignments, secondStudentGrades, numberOfSyllabusAssignments);
+    writeStudentFile(thirdStudentName, secondSyllabusGradings, secondSyllabusAssignments, thirdStudentGrades, numberOfSyllabusAssignments);
+  }
 }
