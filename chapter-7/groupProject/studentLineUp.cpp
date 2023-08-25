@@ -21,6 +21,12 @@ int main() {
   ofstream outFile;
   ifstream inFile;
 
+  // Display banner.
+  cout << left << setw(24) << "Programmer(s):" << "Gil, Prajwool, Nam" << endl
+  << setw(24) << "Program Name:" << "Student Organizer Group Project" << endl
+  << setw(24) << "Program Description:" << "This program prompts the user for a number of students.\n"
+  << setw(24) << "" << " It writes a file and outputs the first and last students.\n" << endl;
+
   // Prompt the user to enter the number of students in the class
   while (true) {
     cout << "Enter the number of students in the class (1 to 25): ";
@@ -55,13 +61,20 @@ int main() {
   } 
 
   while(getline(inFile, name)) {
+    for(int i = 0; i < name.length(); i++) {
+      name[i] = tolower(name[i]);
+    }
     // Determine the student in front of the line and at the end of the line
     if (counter == 0) {
       frontOfLineStudent = name;
       endOfLineStudent = name;
     } else {
-      frontOfLineStudent = (frontOfLineStudent < name) ? frontOfLineStudent : name;
-      endOfLineStudent = (endOfLineStudent > name) ? endOfLineStudent : name;
+      if (name.compare(frontOfLineStudent) < 0) {
+        frontOfLineStudent = name;
+      }
+      if (name.compare(endOfLineStudent) > 0) {
+        endOfLineStudent = name;
+      }
     }
     counter++;
   }
