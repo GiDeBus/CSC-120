@@ -43,8 +43,8 @@ Create your project on the desktop. Open the input and output files through IDE 
   [x] - And whether or not the student has passed or not the exam (the passing grade is 70%)
 
 ### Structure
-[] - A function that loads the answer key – this function should take the file name that contains the point allocation as an argument as well as any other arguments you find necessary.
-[] - A function that “grades” the student – that function will also output the information described above to the file with the student’s name as filename (can do the open as well).
+[x] - A function that loads the answer key – this function should take the file name that contains the point allocation as an argument as well as any other arguments you find necessary.
+[x] - A function that “grades” the student – that function will also output the information described above to the file with the student’s name as filename (can do the open as well).
 [x] - You can use any function or member function with the condition that you explain how it works and why you used it.
 [x] - Any other function(s) that you find useful
 [x] - Your program should compile with NO errors and NO warnings.
