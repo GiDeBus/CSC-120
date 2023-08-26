@@ -7,13 +7,15 @@
 
 using namespace std;
 
-/* TODO:  
-[] - Failed to validate the option to run the program again
-[] - program ended with exit code 1
-[] - You must use a prototype function declaration
-[x] - Numbering is off
-*/
+// File Writing Functions
+void writeBanner(ofstream& fileName);
+void writeQuestion(int num1, int num2, char op, int questionNumber, int totalNumberOfQuestions, ofstream& fileName);
+void writeSummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions, ofstream& fileName);
 
+// Terminal Output Functions
+void displayBanner();
+void displayQuestion(int num1, int num2, char op, int questionNumber, int totalNumberOfQuestions);
+void displaySummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions);
 
 // Function to display the project banner
 void displayBanner() {
