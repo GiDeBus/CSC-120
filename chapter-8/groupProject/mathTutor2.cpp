@@ -10,8 +10,8 @@ using namespace std;
 /* TODO:  
 [] - Failed to validate the option to run the program again
 [] - program ended with exit code 1
-[] - You must use a prototype
-[] - Numbering is off
+[] - You must use a prototype function declaration
+[x] - Numbering is off
 */
 
 
@@ -23,6 +23,12 @@ void displayBanner() {
   cout << "*************************************" << endl;
 }
 
+void writeBanner(ofstream& fileName) {
+  fileName << "*************************************" << endl;
+  fileName << "*        This is Math Tutor 2       *" << endl;
+  fileName << "*  Written by [Gil, Prajwol, Nam]   *" << endl;
+  fileName << "*************************************" << endl;
+}
 // Function to display the main menu and get user's choice
 int getMenuChoice() {
   int choice;
@@ -57,15 +63,11 @@ int getMenuChoice() {
 int getNumberOfQuestions() {
   int numQuestions;
 
-  while (true) {
-    cout << "Enter the number of questions you want to have in the quiz: ";
-    if (cin >> numQuestions && numQuestions > 0) {
-      break;
-    } else {
-      cout << "Invalid input. Please enter a positive integer value.\n";
-      cin.clear();
-      cin.ignore(100, '\n');
-    }
+  cout << "Enter the number of questions you want to have in the quiz: ";
+  while (!(cin >> numQuestions) || numQuestions < 0) {
+    cout << "Invalid input. Please enter a positive integer value.\n";
+    cin.clear();
+    cin.ignore(100, '\n');
   }
 
   return numQuestions;
@@ -129,94 +131,60 @@ double performOperation(int num1, int num2, char op) {
     return 0.0;
 }
 
-// Function to display and validate user input for questions
-bool askQuestion(int num1, int num2, char op, int questionNumber) {
-  double correctAnswer = performOperation(num1, num2, op);
+string getUserInput() {
+  string userInput;
+  while(!(cin >> userInput) || (userInput != "yes" && userInput != "no")) {
+    cout << "Invalid input. Please enter a valid lowercase choice: yes/no.\n";
+    cin.clear();
+    cin.ignore(100, '\n');
+  }
 
-  cout << "\nQuestion " << questionNumber << " of 2\n";
+  return userInput;
+}
+
+// Function to display and validate user input for questions
+void displayQuestion(int num1, int num2, char op, int questionNumber, int totalNumberOfQuestions) {
+  cout << "\nQuestion " << questionNumber << " of " << totalNumberOfQuestions << "\n";
   cout << "\n            " << num1 << "\n\n";
   cout << "      " << op << "     " << num2 << "\n";
   cout << "        ______\n";
-  cout << "Your first try: ";
-
-  for (int attempt = 1; attempt <= 2; attempt++) {
-    int userAnswer;
-    if (cin >> userAnswer) {
-      if (userAnswer == correctAnswer) {
-        cout << "Congratulation !!!" << endl;
-        return true;
-      } else {
-        if (attempt == 1) {
-          cout << "Sorry, the answer is incorrect." << endl;
-          cout << "Please, enter your answer again: ";
-        } else {
-          cout << "Sorry, the answer is incorrect." << endl;
-        }
-      }
-    } else {
-      cout << "Invalid input. Please enter a number." << endl;
-      cin.clear();
-      cin.ignore(100, '\n');
-    }
-  }
-
-  return false;
 }
 
-// Function to save the quiz report to a file
-void saveReport(int totalQuestions, int correctAnswers, int partialCorrectAnswers, int choice) {
-    double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
+void displaySummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions) {
+  double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
+  cout << "\n*******************************************";
+  cout << "\n\tYou got " << correctAnswers << " correct answers";
+  cout << "\n\tand " << partialCorrectAnswers << " partially correct answers";
+  cout << "\n\tout of " << totalQuestions << " questions asked.";
+  cout << "\n\tYou scored: " << fixed << setprecision(2) << score << "%" << endl;
+  cout << "*******************************************\n";
+}
 
-    ofstream reportFile("Report.txt");
-    if (reportFile.is_open()) {
-        reportFile << "*******************************************" << endl;
-        reportFile << "This is Math Tutor 2" << endl;
-        reportFile << "Written by [Gil, Prajwol, Nam]  " << endl;
-        reportFile << "*******************************************" << endl;
+void writeQuestion(int num1, int num2, char op, int questionNumber, int totalNumberOfQuestions, ofstream& fileName) {
+  fileName << "\nQuestion " << questionNumber << " of " << totalNumberOfQuestions << "\n";
+  fileName << "\n            " << num1 << "\n\n";
+  fileName << "      " << op << "     " << num2 << "\n";
+  fileName << "        ______\n";
+}
 
-        int questionNumber = 1;
-        for (int i = 1; i <= totalQuestions; i++) {
-            int num1 = generateRandomNumber(1, 99);
-            int num2 = generateRandomNumber(1, 99);
-            char op = generateRandomOperator(choice);
+void writeSummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions, ofstream& fileName) {
+  double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
+  fileName << "\n*******************************************";
+  fileName << "\n\tYou got " << correctAnswers << " correct answers";
+  fileName << "\n\tand " << partialCorrectAnswers << " partially correct answers";
+  fileName << "\n\tout of " << totalQuestions << " questions asked.";
+  fileName << "\n\tYou scored: " << fixed << setprecision(2) << score << "%" << endl;
+  fileName << "*******************************************\n";
+}
 
-            reportFile << "\nQuestion " << questionNumber++ << " of " << totalQuestions << endl;
-            reportFile << "\n            " << num1 << "\n\n";
-            reportFile << "      " << op << "     " << num2 << "\n";
-            reportFile << "        ______\n";
-            reportFile << "Your first try: ";
-
-            double correctAnswer = performOperation(num1, num2, op);
-            int userAnswer;
-            if (cin >> userAnswer) {
-                if (userAnswer == correctAnswer) {
-                    reportFile << userAnswer << endl;
-                    reportFile << "Congratulation !!!" << endl;
-                } else {
-                    reportFile << userAnswer << endl;
-                    reportFile << "Sorry, the answer is incorrect." << endl;
-                    reportFile << "Please, enter your answer again: " << endl;
-                    if (cin >> userAnswer && userAnswer == correctAnswer) {
-                        reportFile << "Your second try: " << userAnswer << endl;
-                        reportFile << "Congratulation !!!" << endl;
-                    }
-                }
-            } else {
-                reportFile << "Invalid input. Please enter a number." << endl;
-            }
-        }
-
-        reportFile << "\n*******************************************" << endl;
-        reportFile << "\tYou got " << correctAnswers << " correct answers" << endl;
-        reportFile << "\tand " << partialCorrectAnswers << " partially correct answers" << endl;
-        reportFile << "\tout of " << totalQuestions << " questions asked." << endl;
-        reportFile << "\tYou scored: " << fixed << setprecision(2) << score << "%" << endl;
-        reportFile << "*******************************************" << endl;
-
-        reportFile.close();
-    } else {
-        cout << "Error: Unable to save report to file." << endl;
-    }
+double getUserAnswer() {
+  double userAnswer;
+  while(!(cin >> userAnswer)) {
+    cout << "Invalid input. Please enter a number." << endl;
+    cin.clear();
+    cin.ignore(100, '\n');
+  }
+  return userAnswer;
 }
 
 int main() {
@@ -224,14 +192,23 @@ int main() {
   int totalQuestions = 0;
   int correctAnswers = 0;
   int partialCorrectAnswers = 0;
-  int choice; // Declare choice here
+  int choice; 
+  bool isSolved = false;
+  ofstream reportFile("Report.txt");
+  
+  if(!reportFile.is_open()) {
+    cout << "Error: Unable to save report to file." << endl;
+  }
 
   while (true) {
     displayBanner();
+    writeBanner(reportFile);
     choice = getMenuChoice(); // Assign choice here
 
     if (choice == 11) {
-      cout << "Exiting the program. Goodbye!" << endl;
+      string message = "You did not practice any questions. Goodbye!";
+      cout << message << endl;
+      reportFile << message << endl;
       break;
     }
 
@@ -241,43 +218,52 @@ int main() {
       int num1 = generateRandomNumber(1, 99);
       int num2 = generateRandomNumber(1, 99);
       char op = generateRandomOperator(choice);
+      double correctAnswer = performOperation(num1, num2, op);
+      double userAnswer;
 
-      if (askQuestion(num1, num2, op, i)) {
-        correctAnswers++;
-      } else {
-        partialCorrectAnswers++;
+      for(int attempt = 1; attempt <= 2; attempt++) {
+        displayQuestion(num1, num2, op, i, numQuestions);
+        writeQuestion(num1, num2, op, i, numQuestions, reportFile);        
+        cout << "Attempt #" << attempt << ": ";
+        userAnswer = getUserAnswer();
+        reportFile << "Attempt #" << attempt << ": " << userAnswer << endl;
+        if(userAnswer == correctAnswer) {
+          cout << "Congratulation!!!" << endl;
+          reportFile << "Congratulation!!!" << endl;
+          attempt == 1 ? correctAnswers++ : partialCorrectAnswers++;
+          break;
+        } else {
+          cout << "Sorry, the answer is incorrect." << endl;
+          reportFile << "Sorry, the answer is incorrect." << endl;
+          if(attempt == 2) {
+            cout << "The correct answer was: " << correctAnswer << endl;
+            reportFile << "The correct answer was: " << correctAnswer << endl;
+          }
+        }
       }
       totalQuestions++;
     }
 
-    char runAgain;
-    cout << "\n*******************************************";
-    cout << "\n\tYou got " << correctAnswers << " correct answers";
-    cout << "\n\tand " << partialCorrectAnswers << " partially correct answers";
-    cout << "\n\tout of " << totalQuestions << " questions asked.";
-    double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
-    cout << "\n\tYou scored: " << fixed << setprecision(2) << score << "%" << endl;
-    cout << "*******************************************\n";
+    displaySummary(correctAnswers, partialCorrectAnswers, totalQuestions);
+    writeSummary(correctAnswers, partialCorrectAnswers, totalQuestions, reportFile);
 
-    cout << "\nDo you want to run the program again? (y/n): ";
-    string input;
-    if (getline(cin, input)) {
-      if (input.length() > 0 && (input[0] == 'y' || input[0] == 'Y')) {
-        // Reset counts for the next run
-        totalQuestions = 0;
-        correctAnswers = 0;
-        partialCorrectAnswers = 0;
-        continue;
-      } else {
-        break;
-      }
-    } else {
-      cout << "Invalid input. Exiting the program. Goodbye!" << endl;
+    cout << "\nDo you want to run the program again? (yes/no): ";
+    string input = getUserInput();
+    if (input == "yes") {
+      // Reset counts for the next run
+      totalQuestions = 0;
+      correctAnswers = 0;
+      partialCorrectAnswers = 0;
+      continue;
+    } 
+    
+    if(input == "no") {
+      cout << "Thank you for using Math Tutor! Goodbye!" << endl;
+      reportFile << "Thank you for using Math Tutor! Goodbye!" << endl;
       break;
     }
   }
 
-  saveReport(totalQuestions, correctAnswers, partialCorrectAnswers, choice);
-
+  reportFile.close();
   return 0;
 }

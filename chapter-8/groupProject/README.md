@@ -31,43 +31,43 @@ This project is on random numbers, switch statements, loops, functions, and file
 
 [x] - Prompt the user on the number of questions they want to have in the quiz. Validate input.
 
-[] - The program will create the appropriate number of questions to check the user's 
+[x] - The program will create the appropriate number of questions to check the user's 
       knowledge in addition/subtraction/multiplication/division/modulo.
 
-[] - The kind of question to be asked is random.
+[x] - The kind of question to be asked is random.
 
-[] - The operands are also random (the operands will be between 1 and 99). 
+[x] - The operands are also random (the operands will be between 1 and 99). 
 
-[] - The operator depending on the menu selection, is random.
+[x] - The operator depending on the menu selection, is random.
 
-[] - Pay attention to the formatting of the questions when asked.
+[x] - Pay attention to the formatting of the questions when asked.
 The user needs to type the answer. Validate all  input
 
-[] - He/she has two attempts.
+[x] - He/she has two attempts.
 
-[] - If he/she gets the answer on the second attempt. he/she gets partial credit for the question.
+[x] - If he/she gets the answer on the second attempt. he/she gets partial credit for the question.
 
-[] - If the second attempt is incorrect the program provides the correct answer.
+[x] - If the second attempt is incorrect the program provides the correct answer.
 
 
-[] - Clear the screen between the new menu loads. use the system("cls") to clear the screen.( Windows only)
+[x] - Clear the screen between the new menu loads. use the system("cls") to clear the screen.( Windows only)
   Feel free to use the to_string() function to convert a value into a string. 
 
-[] - Validate all input. You should keep asking the user for correct input until a valid one is given.
+[x] - Validate all input. You should keep asking the user for correct input until a valid one is given.
 
-[] - When you finish all the questions, ask the user if they want to run the program again. Validate all input.
+[x] - When you finish all the questions, ask the user if they want to run the program again. Validate all input.
 
-[] - If yes, Validate all input and load the menu again.
+[x] - If yes, Validate all input and load the menu again.
 
-[] - if No, Exit the program with an appropriate message.
+[x] - if No, Exit the program with an appropriate message.
 
-[] - If you select quit from the menu, Exit the program with an appropriate message.
+[x] - If you select quit from the menu, Exit the program with an appropriate message.
 
-[] - At the end of the quiz (s), provide a report about the user's performance 
+[x] - At the end of the quiz (s), provide a report about the user's performance 
     (number of correct answers, number of partially correct
      answers - i.e., second attempt, the total number of questions asked, and the score as a percentage. 
 
-[] - Make sure to store the report on a txt file called Report.txt.
-[] - Do not forget to make sure you use correct grammar in your output.
+[x] - Make sure to store the report on a txt file called Report.txt.
+[x] - Do not forget to make sure you use correct grammar in your output.
 
-[] - Submit .cpp and report.txt file
+[x] - Submit .cpp and report.txt file
