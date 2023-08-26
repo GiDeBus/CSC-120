@@ -95,7 +95,7 @@ void loadSyllabus(string selectedSyllabus, string firstSyllabusAssignments[], in
 // Function that validates number of students. It will only accept ints.
 int getNumberOfStudents() {
   int input;
-  cout << "How many students are in the course? ";
+  cout << "\n How many students are in the course?";
   while(true) {
     if(cin >> input && (input >= 1 && input <= 3 )) {
       return input;
@@ -254,4 +254,6 @@ int main() {
     writeStudentFile(secondStudentName, secondSyllabusGradings, secondSyllabusAssignments, secondStudentGrades, numberOfSyllabusAssignments);
     writeStudentFile(thirdStudentName, secondSyllabusGradings, secondSyllabusAssignments, thirdStudentGrades, numberOfSyllabusAssignments);
   }
+
+  cout << "\n All files have been generated. Thanks for using courseGrade! \n";
 }
