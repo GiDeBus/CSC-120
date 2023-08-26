@@ -31,7 +31,7 @@ void writeBanner(ofstream& fileName) {
   fileName << "*  Written by [Gil, Prajwol, Nam]   *" << endl;
   fileName << "*************************************" << endl;
 }
-// Function to display the main menu and get user's choice
+// Function to display the main menu, validate, and get user's choice
 int getMenuChoice() {
   int choice;
   cout << "\nPlease choose from the following options:\n";
@@ -61,7 +61,7 @@ int getMenuChoice() {
   return choice;
 }
 
-// Function to get the number of questions from the user
+// Function to get and validate the number of questions from the user
 int getNumberOfQuestions() {
   int numQuestions;
 
@@ -133,6 +133,7 @@ double performOperation(int num1, int num2, char op) {
     return 0.0;
 }
 
+// Function to validate user input
 string getUserInput() {
   string userInput;
   while(!(cin >> userInput) || (userInput != "yes" && userInput != "no")) {
@@ -152,6 +153,7 @@ void displayQuestion(int num1, int num2, char op, int questionNumber, int totalN
   cout << "        ______\n";
 }
 
+// Function to display practice summary
 void displaySummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions) {
   double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
   cout << "\n*******************************************";
@@ -162,6 +164,7 @@ void displaySummary(int correctAnswers, int partialCorrectAnswers, int totalQues
   cout << "*******************************************\n";
 }
 
+// Function to write question into file
 void writeQuestion(int num1, int num2, char op, int questionNumber, int totalNumberOfQuestions, ofstream& fileName) {
   fileName << "\nQuestion " << questionNumber << " of " << totalNumberOfQuestions << "\n";
   fileName << "\n            " << num1 << "\n\n";
@@ -169,6 +172,7 @@ void writeQuestion(int num1, int num2, char op, int questionNumber, int totalNum
   fileName << "        ______\n";
 }
 
+// Function to write practice summary to file
 void writeSummary(int correctAnswers, int partialCorrectAnswers, int totalQuestions, ofstream& fileName) {
   double score = (static_cast<double>(correctAnswers) + 0.5 * partialCorrectAnswers) / totalQuestions * 100.0;
   fileName << "\n*******************************************";
@@ -179,6 +183,7 @@ void writeSummary(int correctAnswers, int partialCorrectAnswers, int totalQuesti
   fileName << "*******************************************\n";
 }
 
+// Function to get and validate answer from user
 double getUserAnswer() {
   double userAnswer;
   while(!(cin >> userAnswer)) {
@@ -190,14 +195,14 @@ double getUserAnswer() {
 }
 
 int main() {
-  srand(static_cast<unsigned>(time(0)));
+  srand(static_cast<unsigned>(time(0))); // Ensure random numbers are not repeated
   int totalQuestions = 0;
   int correctAnswers = 0;
   int partialCorrectAnswers = 0;
   int choice; 
-  bool isSolved = false;
   ofstream reportFile("Report.txt");
   
+  // Validate file is open or can be opened
   if(!reportFile.is_open()) {
     cout << "Error: Unable to save report to file." << endl;
   }
@@ -205,35 +210,37 @@ int main() {
   while (true) {
     displayBanner();
     writeBanner(reportFile);
-    choice = getMenuChoice(); // Assign choice here
+    choice = getMenuChoice(); // Assign choice 
 
     if (choice == 11) {
       string message = "You did not practice any questions. Goodbye!";
-      cout << message << endl;
+      cout << message << endl; 
       reportFile << message << endl;
       break;
     }
 
     int numQuestions = getNumberOfQuestions();
 
+    // For each question generate random numbers and get operator
     for (int i = 1; i <= numQuestions; i++) {
       int num1 = generateRandomNumber(1, 99);
       int num2 = generateRandomNumber(1, 99);
       char op = generateRandomOperator(choice);
-      double correctAnswer = performOperation(num1, num2, op);
-      double userAnswer;
+      double correctAnswer = performOperation(num1, num2, op); // calculate correct answer
+      double userAnswer; // define user answer variable
 
+      // For each question allow two attempts
       for(int attempt = 1; attempt <= 2; attempt++) {
         displayQuestion(num1, num2, op, i, numQuestions);
-        writeQuestion(num1, num2, op, i, numQuestions, reportFile);        
+        writeQuestion(num1, num2, op, i, numQuestions, reportFile); // write question to file     
         cout << "Attempt #" << attempt << ": ";
         userAnswer = getUserAnswer();
         reportFile << "Attempt #" << attempt << ": " << userAnswer << endl;
         if(userAnswer == correctAnswer) {
           cout << "Congratulation!!!" << endl;
           reportFile << "Congratulation!!!" << endl;
-          attempt == 1 ? correctAnswers++ : partialCorrectAnswers++;
-          break;
+          attempt == 1 ? correctAnswers++ : partialCorrectAnswers++; // increment scores
+          break; 
         } else {
           cout << "Sorry, the answer is incorrect." << endl;
           reportFile << "Sorry, the answer is incorrect." << endl;
@@ -246,8 +253,8 @@ int main() {
       totalQuestions++;
     }
 
-    displaySummary(correctAnswers, partialCorrectAnswers, totalQuestions);
-    writeSummary(correctAnswers, partialCorrectAnswers, totalQuestions, reportFile);
+    displaySummary(correctAnswers, partialCorrectAnswers, totalQuestions); // display final summary.
+    writeSummary(correctAnswers, partialCorrectAnswers, totalQuestions, reportFile); // write final summary to file
 
     cout << "\nDo you want to run the program again? (yes/no): ";
     string input = getUserInput();
