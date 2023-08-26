@@ -2,11 +2,13 @@ Student:
 ---------------------------------------------------------------
 Assignment          Weight         Grade     Points         
 ---------------------------------------------------------------
-Group_Work          10             0            0         
-Research_paper      20             0            0         
+Project#1           5              0            0         
+Quiz#1              10             0            0         
+Project#2           7              0            0         
+Project#3           8              0            0         
 Midterm             25             0            0         
 Final               35             0            0         
-Service_Learning    10             0            0         
+Participation       10             0            0         
 ---------------------------------------------------------------
 Course Grade: 0%
-Final Exam Pass/Fail: false
+Final Exam Passed?: false

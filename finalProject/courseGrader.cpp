@@ -97,7 +97,7 @@ int getNumberOfStudents() {
   int input;
   cout << "How many students are in the course? ";
   while(true) {
-    if(cin >> input && (input >= 1 || input <= 3 )) {
+    if(cin >> input && (input >= 1 && input <= 3 )) {
       return input;
     }
     cin.clear();
